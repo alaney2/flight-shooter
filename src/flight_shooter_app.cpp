@@ -1,6 +1,6 @@
-#include "tpshooter_app.h"
+#include "flight_shooter_app.h"
 
-namespace tpshooter {
+namespace flightshooter {
 
 TPShooterApp::TPShooterApp() {
   ci::app::setWindowSize(kWindowWidth_, kWindowLength_);

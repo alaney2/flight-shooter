@@ -1,6 +1,6 @@
 #pragma once
 
-namespace tpshooter {
+namespace flightshooter {
 
 class GameEngine {
  public:

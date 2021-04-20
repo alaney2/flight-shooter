@@ -1,6 +1,6 @@
-#include "tpshooter_app.h"
+#include "flight_shooter_app.h"
 
-using tpshooter::TPShooterApp;
+using flightshooter::TPShooterApp;
 
 void prepareSettings(TPShooterApp::Settings* settings) {
   settings->setResizable(false);

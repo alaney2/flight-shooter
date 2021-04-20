@@ -5,7 +5,7 @@
 #include "cinder/gl/gl.h"
 #include "game_engine.h"
 
-namespace tpshooter {
+namespace flightshooter {
 
 class TPShooterApp : public ci::app::App {
  public:
