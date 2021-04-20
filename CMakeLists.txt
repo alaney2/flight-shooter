@@ -12,7 +12,7 @@
 #        tests/game_engine_test.cpp
 #        tests/test_main.cpp)
 
-cmake_minimum_required(VERSION 3.19)
+cmake_minimum_required(VERSION 3.14)
 set(CMAKE_CXX_STANDARD 14)
 project(final_project_alaney2)
 
