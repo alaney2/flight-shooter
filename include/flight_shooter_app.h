@@ -7,9 +7,9 @@
 
 namespace flightshooter {
 
-class TPShooterApp : public ci::app::App {
+class FlightShooter : public ci::app::App {
  public:
-  TPShooterApp();
+  FlightShooter();
   void draw() override;
   void update() override;
   void keyDown(cinder::app::KeyEvent event) override;

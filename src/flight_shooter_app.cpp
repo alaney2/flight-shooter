@@ -2,23 +2,26 @@
 
 namespace flightshooter {
 
-TPShooterApp::TPShooterApp() {
+FlightShooter::FlightShooter() {
   ci::app::setWindowSize(kWindowWidth_, kWindowLength_);
 }
 
-void TPShooterApp::draw() {
+void FlightShooter::draw() {
   ci::Color background_color("black");
   ci::gl::clear(background_color);
   
   engine.Display();
 }
 
-void TPShooterApp::update() {
+void FlightShooter::update() {
   engine.AdvanceOneFrame();
 }
 
-void TPShooterApp::keyDown(cinder::app::KeyEvent event) {
-  AppBase::keyDown(event);
+void FlightShooter::keyDown(cinder::app::KeyEvent event) {
+  if (event.getCode() == cinder::app::KeyEvent::KEY_w
+      || event.getCode() == cinder::app::KeyEvent::KEY_a) {
+    engine.StrafeDirection(event.getChar());
+  }
 }
 
-} // namespace tpshooter
+} // namespace flightshooter

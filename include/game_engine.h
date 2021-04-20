@@ -10,6 +10,8 @@ class GameEngine {
   
   void AdvanceOneFrame();
   
+  void StrafeDirection(char direction);
+  
  private:
   
 };

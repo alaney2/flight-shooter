@@ -29,5 +29,8 @@ void GameEngine::Display() const {
 void GameEngine::AdvanceOneFrame() {
   
 }
+void GameEngine::StrafeDirection(char direction) {
+  
+}
 
 }
