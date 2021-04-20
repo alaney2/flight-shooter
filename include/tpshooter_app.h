@@ -16,5 +16,8 @@ class TPShooterApp : public ci::app::App {
 
  private:
   GameEngine engine;
+
+  const int kWindowWidth_ = 1280;
+  const int kWindowLength_ = 720;
 };
 }

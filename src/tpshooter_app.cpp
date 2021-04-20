@@ -3,6 +3,7 @@
 namespace tpshooter {
 
 TPShooterApp::TPShooterApp() {
+  ci::app::setWindowSize(kWindowWidth_, kWindowLength_);
 }
 
 void TPShooterApp::draw() {
