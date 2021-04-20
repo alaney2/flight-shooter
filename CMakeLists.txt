@@ -51,7 +51,8 @@ include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 
 list(APPEND SOURCE_FILES
         src/flight_shooter_app.cpp
-        src/game_engine.cpp)
+        src/game_engine.cpp
+        src/player.cpp)
 
 list(APPEND TEST_FILES 
         tests/game_engine_test.cpp)
