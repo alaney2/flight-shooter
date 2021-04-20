@@ -1,5 +1,6 @@
 #pragma once
 
+#include "player.h"
 #include "cinder/gl/gl.h"
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
@@ -17,7 +18,7 @@ class GameEngine {
   void StrafeDirection(char direction);
   
  private:
-  ci::vec3 position_ = ci::vec3();
+  Player player_;
 };
 
 }
