@@ -50,7 +50,8 @@ get_filename_component(APP_PATH "${CMAKE_CURRENT_SOURCE_DIR}/" ABSOLUTE)
 include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 
 list(APPEND SOURCE_FILES
-        src/tpshooter_app.cpp)
+        src/tpshooter_app.cpp
+        src/game_engine.cpp)
 
 list(APPEND TEST_FILES 
         tests/game_engine_test.cpp)
