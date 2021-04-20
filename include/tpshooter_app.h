@@ -3,6 +3,7 @@
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
+#include "game_engine.h"
 
 namespace tpshooter {
 
@@ -14,6 +15,6 @@ class TPShooterApp : public ci::app::App {
   void keyDown(cinder::app::KeyEvent event) override;
 
  private:
-
+  GameEngine engine;
 };
 }
