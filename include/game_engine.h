@@ -11,9 +11,11 @@ class GameEngine {
  public:
   GameEngine();
   
-  void Display() const;
+  const void Display() const;
   
   void AdvanceOneFrame();
+  
+  const void DrawPlayer() const;
 
   Player ModifyPlayer() const;
   
