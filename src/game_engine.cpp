@@ -5,7 +5,7 @@ using ci::vec3;
 namespace flightshooter {
 
 GameEngine::GameEngine() {
-  
+  player_.SetPosition(ci::vec3(0));
 }
 
 const void GameEngine::Display() const {
@@ -34,7 +34,7 @@ const void GameEngine::DrawPlayer() const {
   auto shader = ci::gl::getStockShader(lambert);
   shader->bind();
 
-  ci::gl::drawCube( vec3(), player_.GetScale());
+  ci::gl::drawCube( player_.GetPosition(), player_.GetScale());
 }
 
 }

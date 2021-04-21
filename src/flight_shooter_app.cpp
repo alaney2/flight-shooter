@@ -20,12 +20,12 @@ void FlightShooter::update() {
 void FlightShooter::keyDown(cinder::app::KeyEvent event) {
   if (event.getCode() == cinder::app::KeyEvent::KEY_d
       || event.getCode() == cinder::app::KeyEvent::KEY_a) {
-    engine_.ModifyPlayer().Strafe(event.getChar());
-    std::cout << event.getChar() << std::endl;
+    engine_.player_.Strafe(event.getChar());
+//    std::cout << event.getChar() << std::endl;
   }
   
   if (event.getCode() == cinder::app::KeyEvent::KEY_w) {
-    
+    // shoot projectile
   }
 }
 

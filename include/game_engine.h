@@ -18,9 +18,9 @@ class GameEngine {
   const void DrawPlayer() const;
 
   Player ModifyPlayer() const;
-  
- private:
   Player player_;
+
+ private:
 };
 
 }
