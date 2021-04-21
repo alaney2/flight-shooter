@@ -20,7 +20,7 @@ void FlightShooter::update() {
 void FlightShooter::keyDown(cinder::app::KeyEvent event) {
   if (event.getCode() == cinder::app::KeyEvent::KEY_d
       || event.getCode() == cinder::app::KeyEvent::KEY_a) {
-    engine_.player_.Strafe(event.getChar());
+    engine_.GetPlayerAddress()->Strafe(event.getChar());
 //    std::cout << event.getChar() << std::endl;
   }
   

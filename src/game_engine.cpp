@@ -17,8 +17,8 @@ void GameEngine::AdvanceOneFrame() {
   
 }
 
-Player GameEngine::ModifyPlayer() const {
-  return player_;
+Player* GameEngine::GetPlayerAddress() {
+  return &player_;
 }
 
 const void GameEngine::DrawPlayer() const {
