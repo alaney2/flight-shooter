@@ -9,18 +9,23 @@ FlightShooter::FlightShooter() {
 void FlightShooter::draw() {
   ci::Color background_color("black");
   ci::gl::clear(background_color);
-  
-  engine.Display();
+
+  engine_.Display();
 }
 
 void FlightShooter::update() {
-  engine.AdvanceOneFrame();
+  engine_.AdvanceOneFrame();
 }
 
 void FlightShooter::keyDown(cinder::app::KeyEvent event) {
-  if (event.getCode() == cinder::app::KeyEvent::KEY_w
+  if (event.getCode() == cinder::app::KeyEvent::KEY_d
       || event.getCode() == cinder::app::KeyEvent::KEY_a) {
-    engine.StrafeDirection(event.getChar());
+    engine_.ModifyPlayer().Strafe(event.getChar());
+    std::cout << event.getChar() << std::endl;
+  }
+  
+  if (event.getCode() == cinder::app::KeyEvent::KEY_w) {
+    
   }
 }
 

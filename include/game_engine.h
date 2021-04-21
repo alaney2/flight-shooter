@@ -14,8 +14,8 @@ class GameEngine {
   void Display() const;
   
   void AdvanceOneFrame();
-  
-  void StrafeDirection(char direction);
+
+  Player ModifyPlayer() const;
   
  private:
   Player player_;

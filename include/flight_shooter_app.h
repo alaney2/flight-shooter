@@ -15,7 +15,7 @@ class FlightShooter : public ci::app::App {
   void keyDown(cinder::app::KeyEvent event) override;
 
  private:
-  GameEngine engine;
+  GameEngine engine_;
 
   const int kWindowWidth_ = 720;
   const int kWindowLength_ = 840;

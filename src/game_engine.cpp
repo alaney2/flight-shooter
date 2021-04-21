@@ -13,7 +13,6 @@ void GameEngine::Display() const {
   ci::gl::enableDepthRead();
   ci::gl::enableDepthWrite();
   
-  
   ci::CameraPersp cam;
   cam.lookAt( vec3( 0, 3, 3 ), vec3( 0,1,0));
   ci::gl::setMatrices(cam);
@@ -32,13 +31,8 @@ void GameEngine::AdvanceOneFrame() {
   
 }
 
-void GameEngine::StrafeDirection(char direction) {
-  if (direction == 'd') {
-    
-  }
-  if (direction == 'a') {
-    
-  }
+Player GameEngine::ModifyPlayer() const {
+  return player_;
 }
 
 }

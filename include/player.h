@@ -9,10 +9,12 @@ namespace flightshooter {
 class Player {
  public:
   const ci::vec3 GetScale() const;
+  void Strafe(char direction);
   
  private:
-  ci::vec3 position_ = ci::vec3();
-  const ci::vec3 scale_ = ci::vec3(0.5, 0.3, 0.3);
+  ci::vec3 position_ = ci::vec3(0);
+  const ci::vec3 kScale_ = ci::vec3(0.5, 0.3, 0.3);
+  const size_t kSpeed_ = 5;
 };
 
 }
