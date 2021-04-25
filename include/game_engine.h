@@ -17,7 +17,7 @@ class GameEngine {
   
   const void DrawPlayer() const;
 
-  Player* GetPlayerAddress();
+  Player& GetPlayerAddress();
 
  private:
   Player player_;

@@ -14,11 +14,11 @@ const void GameEngine::Display() const {
 }
 
 void GameEngine::AdvanceOneFrame() {
-  
+  player_.UpdatePosition();
 }
 
-Player* GameEngine::GetPlayerAddress() {
-  return &player_;
+Player& GameEngine::GetPlayerAddress() {
+  return player_;
 }
 
 const void GameEngine::DrawPlayer() const {

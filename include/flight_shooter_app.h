@@ -13,6 +13,7 @@ class FlightShooter : public ci::app::App {
   void draw() override;
   void update() override;
   void keyDown(cinder::app::KeyEvent event) override;
+  void keyUp(cinder::app::KeyEvent event) override;
 
  private:
   GameEngine engine_;

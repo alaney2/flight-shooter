@@ -10,6 +10,7 @@ void Player::Strafe(char direction) {
   if (direction == 'a') {
     position_.x -= kSpeed_;
   }
+  
   if (direction == 'd') {
     position_.x += kSpeed_;
   }
@@ -21,6 +22,23 @@ const ci::vec3 Player::GetPosition() const {
 
 void Player::SetPosition(const ci::vec3 &position) {
   position_ = position;
+}
+void Player::ToggleMovement() {
+  !moving_;
+}
+
+bool Player::isPlayerMoving() {
+  return moving_;
+}
+
+void Player::SetMovementDirection(char direction) {
+  movement_direction_ = direction;
+}
+
+void Player::UpdatePosition() {
+  if (moving_) {
+    Strafe(movement_direction_);
+  }
 }
 
 }
