@@ -12,7 +12,7 @@ class Player {
   void Strafe(char direction);
   const ci::vec3 GetPosition() const;
   void SetPosition(const ci::vec3 &position);
-  void ToggleMovement();
+  void ToggleMovement(bool is_moving);
   void SetMovementDirection(char direction);
   void UpdatePosition();
   bool isPlayerMoving();
@@ -22,7 +22,7 @@ class Player {
   char movement_direction_;
   ci::vec3 position_;
   const ci::vec3 kScale_ = ci::vec3(0.5, 0.3, 0.3);
-  const float kSpeed_ = 0.15;
+  const float kSpeed_ = 0.05;
 };
 
 }

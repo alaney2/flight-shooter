@@ -23,8 +23,9 @@ const ci::vec3 Player::GetPosition() const {
 void Player::SetPosition(const ci::vec3 &position) {
   position_ = position;
 }
-void Player::ToggleMovement() {
-  !moving_;
+
+void Player::ToggleMovement(bool is_moving) {
+  moving_ = is_moving;
 }
 
 bool Player::isPlayerMoving() {
