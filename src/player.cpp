@@ -40,6 +40,11 @@ void Player::UpdatePosition() {
   if (moving_) {
     Strafe(movement_direction_);
   }
+  if (position_.x >= kBoundary_) {
+    position_.x = kBoundary_;
+  } else if (position_.x <= -kBoundary_) {
+    position_.x = -kBoundary_;
+  }
 }
 
 }

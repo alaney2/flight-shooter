@@ -20,7 +20,6 @@ void FlightShooter::update() {
 void FlightShooter::keyDown(cinder::app::KeyEvent event) {
   if (event.getCode() == cinder::app::KeyEvent::KEY_a
       || event.getCode() == cinder::app::KeyEvent::KEY_d) {
-//    engine_.GetPlayerAddress().Strafe(event.getChar());
     engine_.GetPlayerAddress().ToggleMovement(true);
     engine_.GetPlayerAddress().SetMovementDirection(event.getChar());
   }
