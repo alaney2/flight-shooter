@@ -37,4 +37,8 @@ const void GameEngine::DrawPlayer() const {
   ci::gl::drawCube( player_.GetPosition(), player_.GetScale());
 }
 
+void GameEngine::ShootProjectile() {
+  
+}
+
 }

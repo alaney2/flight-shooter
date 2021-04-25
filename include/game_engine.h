@@ -18,10 +18,12 @@ class GameEngine {
   const void DrawPlayer() const;
 
   Player& GetPlayerAddress();
-
+  
+  void ShootProjectile();
+  
  private:
   Player player_;
-
+  
 };
 
 }
