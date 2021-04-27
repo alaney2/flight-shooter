@@ -1,19 +1,5 @@
-#cmake_minimum_required(VERSION 3.19)
-#project(final_project_alaney2)
-#
-#set(CMAKE_CXX_STANDARD 14)
-#
-#include_directories(include)
-#
-#add_executable(final_project_alaney2
-#        apps/cinder_app_main.cpp
-#        include/game_engine.h
-#        src/game_engine.cpp
-#        tests/game_engine_test.cpp
-#        tests/test_main.cpp)
-
-cmake_minimum_required(VERSION 3.19)
-set(CMAKE_CXX_STANDARD 14)
+cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
+set(CMAKE_CXX_STANDARD 11)
 project(final_project_alaney2)
 
 # This tells the compiler to not aggressively optimize and
@@ -63,11 +49,14 @@ get_filename_component(APP_PATH "${CMAKE_CURRENT_SOURCE_DIR}/" ABSOLUTE)
 
 include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 
-list(APPEND SOURCE_FILES    
-        src/game_engine.cpp)
+list(APPEND SOURCE_FILES
+        src/flight_shooter_app.cpp
+        src/game_engine.cpp
+        src/player.cpp)
 
 list(APPEND TEST_FILES 
-        tests/game_engine_test.cpp)
+        tests/game_engine_test.cpp
+        tests/player_test.cpp)
 
 ci_make_app(
         APP_NAME        run-game
@@ -85,5 +74,5 @@ ci_make_app(
 )
 
 if(MSVC)
-    set_property(TARGET gas-simulation-test APPEND_STRING PROPERTY LINK_FLAGS " /SUBSYSTEM:CONSOLE")
+    set_property(TARGET game-test APPEND_STRING PROPERTY LINK_FLAGS " /SUBSYSTEM:CONSOLE")
 endif()
