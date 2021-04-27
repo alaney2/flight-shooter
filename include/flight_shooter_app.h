@@ -13,11 +13,12 @@ class FlightShooter : public ci::app::App {
   void draw() override;
   void update() override;
   void keyDown(cinder::app::KeyEvent event) override;
+  void keyUp(cinder::app::KeyEvent event) override;
 
  private:
   GameEngine engine_;
 
-  const int kWindowWidth_ = 720;
+  const int kWindowWidth_ = 719;
   const int kWindowLength_ = 840;
 };
 }

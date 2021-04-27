@@ -17,12 +17,13 @@ class GameEngine {
   
   const void DrawPlayer() const;
 
-  Player* GetPlayerAddress();
-
+  Player& GetPlayerAddress();
+  
+  void ShootProjectile();
+  
  private:
   Player player_;
-  __attribute__((unused)) const double kLeftBound_ = -1.4;
-  __attribute__((unused)) const double kRightBound_ = 1.4;
+  
 };
 
 }

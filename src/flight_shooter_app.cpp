@@ -18,14 +18,21 @@ void FlightShooter::update() {
 }
 
 void FlightShooter::keyDown(cinder::app::KeyEvent event) {
-  if (event.getCode() == cinder::app::KeyEvent::KEY_d
-      || event.getCode() == cinder::app::KeyEvent::KEY_a) {
-    engine_.GetPlayerAddress()->Strafe(event.getChar());
-//    std::cout << event.getChar() << std::endl;
+  if (event.getCode() == cinder::app::KeyEvent::KEY_a
+      || event.getCode() == cinder::app::KeyEvent::KEY_d) {
+    engine_.GetPlayerAddress().ToggleMovement(true);
+    engine_.GetPlayerAddress().SetMovementDirection(event.getChar());
   }
   
   if (event.getCode() == cinder::app::KeyEvent::KEY_w) {
-    // shoot projectile
+    engine_.ShootProjectile();
+  }
+}
+
+void FlightShooter::keyUp(cinder::app::KeyEvent event) {
+  if (event.getCode() == cinder::app::KeyEvent::KEY_a 
+    || event.getCode() == cinder::app::KeyEvent::KEY_d) {
+    engine_.GetPlayerAddress().ToggleMovement(false);
   }
 }
 
