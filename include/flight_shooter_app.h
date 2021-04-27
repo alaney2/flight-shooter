@@ -18,7 +18,7 @@ class FlightShooter : public ci::app::App {
  private:
   GameEngine engine_;
 
-  const int kWindowWidth_ = 719;
+  const int kWindowWidth_ = 720;
   const int kWindowLength_ = 840;
 };
 }
