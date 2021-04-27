@@ -1,8 +1,11 @@
-I will be creating a third-person shooter. 
-I have background knowledge playing CS:GO.
+I will be creating a third-person shooter. I have background knowledge playing CS:GO, GTA V, and Skyrim.
 
-By the end of Week 1, I hope to have implemented the physics of the game, such as shooting things. By the end of Week 2,
-I hope that I will have implemented the movement. I probably will not make a game where the Player will freely move
-around. The game will just automatically move forward by itself. 
+Timeline:
 
-If I finish the project early, I will implement Player movement and health bars for the enemies.
+Week1: Implement the physics of the game, such as movement. Figure out the shading.
+
+Week2: Implement the ability to shoot things. 
+
+Week3: Implement a score system and start menu. 
+
+If I finish the project early, I will implement health bars.
