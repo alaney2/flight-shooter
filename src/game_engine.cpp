@@ -9,8 +9,8 @@ GameEngine::GameEngine() {
 }
 
 const void GameEngine::Display() const {
-  DrawPlayer();
-  
+//  DrawPlayer();
+  DrawShapes();
 }
 
 void GameEngine::AdvanceOneFrame() {
@@ -37,8 +37,47 @@ const void GameEngine::DrawPlayer() const {
   ci::gl::drawCube( player_.GetPosition(), player_.GetScale());
 }
 
-void GameEngine::ShootProjectile() {
+const void GameEngine::ShootProjectile() const {
+  ci::gl::clear();
+  ci::gl::enableDepthRead();
+  ci::gl::enableDepthWrite();
+
+  auto lambert = ci::gl::ShaderDef().lambert();
+  auto shader = ci::gl::getStockShader(lambert);
+  shader->bind();
+  ci::gl::pushModelMatrix();
+  ci::vec3 sphere_pos = player_.GetPosition();
+
+  ci::gl::color(20,100,20);
+
+  ci::gl::drawSphere(sphere_pos, 1.0f, 80);
   
+  ci::gl::popModelMatrix();
+}
+
+const void GameEngine::DrawShapes() const {
+  ci::gl::clear();
+  ci::gl::enableDepthRead();
+  ci::gl::enableDepthWrite();
+
+  ci::CameraPersp cam;
+  cam.lookAt( vec3( 0, 3, 3 ), vec3( 0,1,0));
+  ci::gl::setMatrices(cam);
+
+  auto lambert = ci::gl::ShaderDef().lambert();
+  auto shader = ci::gl::getStockShader(lambert);
+  shader->bind();
+
+  ci::gl::drawCube( player_.GetPosition(), player_.GetScale());
+
+  ci::gl::pushModelMatrix();
+  ci::vec3 sphere_pos = player_.GetPosition();
+
+  ci::gl::color(20,100,20);
+
+  ci::gl::drawSphere(sphere_pos, 0.3f, 10);
+
+  ci::gl::popModelMatrix();
 }
 
 }

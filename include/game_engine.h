@@ -19,7 +19,9 @@ class GameEngine {
 
   Player& GetPlayerAddress();
   
-  void ShootProjectile();
+  const void ShootProjectile() const;
+  
+  const void DrawShapes() const;
   
  private:
   Player player_;
