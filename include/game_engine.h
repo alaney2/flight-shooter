@@ -11,16 +11,35 @@ class GameEngine {
  public:
   GameEngine();
   
+  /**
+   * 
+   */
   const void Display() const;
   
+  /**
+   * 
+   */
   void AdvanceOneFrame();
   
+  /**
+   * 
+   */
   const void DrawPlayer() const;
-
+  
+  /**
+   * 
+   * @return 
+   */
   Player& GetPlayerAddress();
   
+  /**
+   * 
+   */
   const void ShootProjectile() const;
   
+  /**
+   * 
+   */
   const void DrawShapes() const;
   
  private:

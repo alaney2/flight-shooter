@@ -8,13 +8,32 @@ namespace flightshooter {
 
 class Player {
  public:
-  const ci::vec3 GetScale() const;
+  /**
+   * 
+   * @param direction 
+   */
   void Strafe(char direction);
+  
+  /**
+   * 
+   * @param is_moving 
+   */
+  void ToggleMovement(bool is_moving);
+  
+  /**
+   * 
+   * @param direction 
+   */
+  void SetMovementDirection(char direction);
+
+  /**
+   * 
+   */
+  void UpdatePosition();
+
+  const ci::vec3 GetScale() const;
   const ci::vec3 GetPosition() const;
   void SetPosition(const ci::vec3 &position);
-  void ToggleMovement(bool is_moving);
-  void SetMovementDirection(char direction);
-  void UpdatePosition();
   bool isPlayerMoving();
   
  private:
