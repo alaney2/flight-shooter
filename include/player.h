@@ -34,13 +34,12 @@ class Player {
   const ci::vec3 GetScale() const;
   const ci::vec3 GetPosition() const;
   void SetPosition(const ci::vec3 &position);
-  bool isPlayerMoving();
   
  private:
   bool moving_ = false;
   char movement_direction_;
   ci::vec3 position_;
-  const ci::vec3 kScale_ = ci::vec3(0.5, 0.3, 0.3);
+  const ci::vec3 kScale_ = ci::vec3(0.5, 0.4, 0.4);
   const float kPlayerSpeed_ = 0.05;
   const double kBoundary_ = 1.3;
 };

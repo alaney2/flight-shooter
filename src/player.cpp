@@ -28,10 +28,6 @@ void Player::ToggleMovement(bool is_moving) {
   moving_ = is_moving;
 }
 
-bool Player::isPlayerMoving() {
-  return moving_;
-}
-
 void Player::SetMovementDirection(char direction) {
   movement_direction_ = direction;
 }

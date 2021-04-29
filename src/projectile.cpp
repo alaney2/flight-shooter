@@ -6,6 +6,7 @@ Projectile::Projectile(const ci::vec3 &position) : position_(position) { }
 
 void Projectile::MoveProjectileUp() {
   position_.y += static_cast<float>(kProjectileSpeed_);
+//  position_.z += 0.02;
 }
 
 const ci::vec3 Projectile::GetPosition() const {

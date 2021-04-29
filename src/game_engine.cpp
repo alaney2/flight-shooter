@@ -63,21 +63,25 @@ const void GameEngine::DrawShapes() const {
   ci::gl::enableDepthWrite();
 
   ci::CameraPersp cam;
-  cam.lookAt( vec3( 0, 3, 3 ), vec3( 0,1,0));
+  cam.lookAt( vec3( 0, 0, 4), vec3( 0,0,0));
   ci::gl::setMatrices(cam);
 
   auto lambert = ci::gl::ShaderDef().lambert();
   auto shader = ci::gl::getStockShader(lambert);
   shader->bind();
-
+  
+  ci::gl::translate(0, -0.8, 0);
   ci::gl::drawCube( player_.GetPosition(), player_.GetScale());
-
+  
+//  cam.lookAt(player_.GetPosition(), vec3(0, 1, 0 ));
+//  ci::gl::setMatrices(cam);
   // Draw projectiles
   for (const Projectile& projectile: projectiles_) {
+    
     ci::gl::pushModelMatrix();
 
     ci::gl::color(20,100,20);
-    ci::gl::scale(projectile.GetScale());
+//    ci::gl::scale(projectile.GetScale());
     ci::gl::drawSphere(projectile.GetPosition(), projectile.GetRadius());
 
     ci::gl::popModelMatrix();
