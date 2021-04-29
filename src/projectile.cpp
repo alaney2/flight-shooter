@@ -12,4 +12,12 @@ const ci::vec3 Projectile::GetPosition() const {
   return position_;
 }
 
+const ci::vec3 Projectile::GetScale() const {
+  return kScale_;
+}
+
+const float Projectile::GetRadius() const {
+  return kRadius_;
+}
+
 }

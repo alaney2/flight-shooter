@@ -77,8 +77,8 @@ const void GameEngine::DrawShapes() const {
     ci::gl::pushModelMatrix();
 
     ci::gl::color(20,100,20);
-
-    ci::gl::drawSphere(projectile.GetPosition(), 0.05f);
+    ci::gl::scale(projectile.GetScale());
+    ci::gl::drawSphere(projectile.GetPosition(), projectile.GetRadius());
 
     ci::gl::popModelMatrix();
   }
