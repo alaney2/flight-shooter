@@ -97,6 +97,21 @@ void GameEngine::UpdateProjectiles() {
   for (Projectile &projectile: projectiles_) {
     projectile.MoveProjectileUp();
   }
+  
+  for (auto projectile = projectiles_.begin(); projectile != projectiles_.end(); ++projectile) {
+    projectile->MoveProjectileUp();
+    
+    float erase_threshold = 5.0f;
+    if (projectile->GetPosition().y > erase_threshold) {
+      projectiles_.erase(projectile);
+      --projectile;
+    }
+  }
+  std::cout << projectiles_.size() << std::endl;
+}
+
+const size_t GameEngine::ProjectilesOnScreen() const {
+  return projectiles_.size();
 }
 
 }

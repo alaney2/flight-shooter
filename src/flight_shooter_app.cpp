@@ -25,7 +25,9 @@ void FlightShooter::keyDown(cinder::app::KeyEvent event) {
   }
   
   if (event.getCode() == cinder::app::KeyEvent::KEY_w) {
-    engine_.SpawnProjectile(engine_.GetPlayerAddress().GetPosition());
+    if (engine_.ProjectilesOnScreen() < kMaxProjectiles_) {
+      engine_.SpawnProjectile(engine_.GetPlayerAddress().GetPosition());
+    }
   }
 }
 

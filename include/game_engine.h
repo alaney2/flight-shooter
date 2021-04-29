@@ -49,6 +49,8 @@ class GameEngine {
    */
   void UpdateProjectiles();
   
+  const size_t ProjectilesOnScreen() const;
+  
  private:
   Player player_;
   std::vector<Projectile> projectiles_;

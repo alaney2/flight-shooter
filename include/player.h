@@ -41,7 +41,7 @@ class Player {
   ci::vec3 position_;
   const ci::vec3 kScale_ = ci::vec3(0.5, 0.4, 0.4);
   const float kPlayerSpeed_ = 0.05;
-  const double kBoundary_ = 1.3;
+  const double kBoundary_ = 1.2;
 };
 
 }
