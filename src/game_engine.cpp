@@ -15,6 +15,7 @@ const void GameEngine::Display() const {
 
 void GameEngine::AdvanceOneFrame() {
   player_.UpdatePosition();
+  UpdateProjectiles();
 }
 
 Player& GameEngine::GetPlayerAddress() {
@@ -37,25 +38,26 @@ const void GameEngine::DrawPlayer() const {
   ci::gl::drawCube( player_.GetPosition(), player_.GetScale());
 }
 
-const void GameEngine::ShootProjectile() const {
-  ci::gl::clear();
-  ci::gl::enableDepthRead();
-  ci::gl::enableDepthWrite();
-
-  auto lambert = ci::gl::ShaderDef().lambert();
-  auto shader = ci::gl::getStockShader(lambert);
-  shader->bind();
-  ci::gl::pushModelMatrix();
-  ci::vec3 sphere_pos = player_.GetPosition();
-
-  ci::gl::color(20,100,20);
-
-  ci::gl::drawSphere(sphere_pos, 1.0f, 80);
-  
-  ci::gl::popModelMatrix();
-}
+//const void GameEngine::ShootProjectile() const {
+//  ci::gl::clear();
+//  ci::gl::enableDepthRead();
+//  ci::gl::enableDepthWrite();
+//
+//  auto lambert = ci::gl::ShaderDef().lambert();
+//  auto shader = ci::gl::getStockShader(lambert);
+//  shader->bind();
+//  ci::gl::pushModelMatrix();
+//  ci::vec3 sphere_pos = player_.GetPosition();
+//
+//  ci::gl::color(20,100,20);
+//
+//  ci::gl::drawSphere(sphere_pos, 1.0f, 80);
+//  
+//  ci::gl::popModelMatrix();
+//}
 
 const void GameEngine::DrawShapes() const {
+  // Draw player
   ci::gl::clear();
   ci::gl::enableDepthRead();
   ci::gl::enableDepthWrite();
@@ -70,19 +72,27 @@ const void GameEngine::DrawShapes() const {
 
   ci::gl::drawCube( player_.GetPosition(), player_.GetScale());
 
-  ci::gl::pushModelMatrix();
-  ci::vec3 sphere_pos = player_.GetPosition();
+  // Draw projectiles
+  for (const Projectile& projectile: projectiles_) {
+    ci::gl::pushModelMatrix();
 
-  ci::gl::color(20,100,20);
+    ci::gl::color(20,100,20);
 
-  ci::gl::drawSphere(sphere_pos, 0.3f, 10);
+    ci::gl::drawSphere(projectile.GetPosition(), 0.05f);
 
-  ci::gl::popModelMatrix();
+    ci::gl::popModelMatrix();
+  }
 }
 
 void GameEngine::SpawnProjectile(const vec3& position) {
   Projectile projectile = Projectile(position);
   projectiles_.emplace_back(projectile);
+}
+
+void GameEngine::UpdateProjectiles() {
+  for (Projectile &projectile: projectiles_) {
+    projectile.MoveProjectileUp();
+  }
 }
 
 }

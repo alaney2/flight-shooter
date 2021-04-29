@@ -8,11 +8,11 @@ const ci::vec3 Player::GetScale() const {
 
 void Player::Strafe(char direction) {
   if (direction == 'a') {
-    position_.x -= kSpeed_;
+    position_.x -= kPlayerSpeed_;
   }
   
   if (direction == 'd') {
-    position_.x += kSpeed_;
+    position_.x += kPlayerSpeed_;
   }
 }
 
@@ -41,9 +41,9 @@ void Player::UpdatePosition() {
     Strafe(movement_direction_);
   }
   if (position_.x >= kBoundary_) {
-    position_.x = kBoundary_;
+    position_.x = static_cast<float>(kBoundary_);
   } else if (position_.x <= -kBoundary_) {
-    position_.x = -kBoundary_;
+    position_.x = static_cast<float>(-kBoundary_);
   }
 }
 

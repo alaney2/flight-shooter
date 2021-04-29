@@ -4,7 +4,7 @@
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 #include "player.h"
-#import "projectile.h"
+#include "projectile.h"
 
 namespace flightshooter {
 
@@ -43,6 +43,11 @@ class GameEngine {
    * @param position 
    */
   void SpawnProjectile(const ci::vec3 &position);
+  
+  /**
+   * 
+   */
+  void UpdateProjectiles();
   
  private:
   Player player_;
