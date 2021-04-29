@@ -15,6 +15,7 @@ void FlightShooter::draw() {
 
 void FlightShooter::update() {
   engine_.AdvanceOneFrame();
+  ++score_;
 }
 
 void FlightShooter::keyDown(cinder::app::KeyEvent event) {
