@@ -80,4 +80,9 @@ const void GameEngine::DrawShapes() const {
   ci::gl::popModelMatrix();
 }
 
+void GameEngine::SpawnProjectile(const vec3& position) {
+  Projectile projectile = Projectile(position);
+  projectiles_.emplace_back(projectile);
+}
+
 }

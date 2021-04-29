@@ -5,13 +5,9 @@
 #include "cinder/app/RendererGl.h"
 
 namespace flightshooter {
-class projectile {
+class Projectile {
  public:
-  /**
-   * 
-   * @param position 
-   */
-  void SpawnProjectile(ci::vec3 &position);
+  Projectile(const ci::vec3 &position);
   
  private:
   ci::vec3 position_;

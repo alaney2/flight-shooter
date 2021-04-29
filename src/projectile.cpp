@@ -2,8 +2,6 @@
 
 namespace flightshooter {
 
-void projectile::SpawnProjectile(ci::vec3 &position) {
-  
-}
+Projectile::Projectile(const ci::vec3 &position) : position_(position) { }
 
 }

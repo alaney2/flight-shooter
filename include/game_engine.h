@@ -1,9 +1,10 @@
 #pragma once
 
-#include "player.h"
-#include "cinder/gl/gl.h"
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
+#include "cinder/gl/gl.h"
+#include "player.h"
+#import "projectile.h"
 
 namespace flightshooter {
 
@@ -35,16 +36,17 @@ class GameEngine {
   /**
    * 
    */
-  const void ShootProjectile() const;
-  
+  const void DrawShapes() const;
+
   /**
    * 
+   * @param position 
    */
-  const void DrawShapes() const;
+  void SpawnProjectile(const ci::vec3 &position);
   
  private:
   Player player_;
-  
+  std::vector<Projectile> projectiles_;
 };
 
 }

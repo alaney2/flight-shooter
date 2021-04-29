@@ -25,7 +25,7 @@ void FlightShooter::keyDown(cinder::app::KeyEvent event) {
   }
   
   if (event.getCode() == cinder::app::KeyEvent::KEY_w) {
-    engine_.ShootProjectile();
+    engine_.SpawnProjectile(engine_.GetPlayerAddress().GetPosition());
   }
 }
 
