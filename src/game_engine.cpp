@@ -9,7 +9,6 @@ GameEngine::GameEngine() {
 }
 
 const void GameEngine::Display() const {
-//  DrawPlayer();
   DrawShapes();
 }
 
@@ -17,6 +16,7 @@ void GameEngine::AdvanceOneFrame() {
   player_.UpdatePosition();
   UpdateProjectiles();
   UpdateEnemies();
+  std::cout << enemies_.size() << " " << projectiles_.size() << std::endl;
 }
 
 Player& GameEngine::GetPlayerAddress() {
@@ -42,10 +42,8 @@ const void GameEngine::DrawShapes() const {
   
   // Draw projectiles
   for (const Projectile& projectile: projectiles_) {
-    
     ci::gl::pushModelMatrix();
 
-    ci::gl::color(20,100,20);
 //    ci::gl::scale(projectile.GetScale());
     ci::gl::drawSphere(projectile.GetPosition(), projectile.GetRadius());
 
@@ -72,26 +70,32 @@ void GameEngine::SpawnEnemy(const vec3& position) {
 }
 
 void GameEngine::UpdateProjectiles() {
-//  for (Projectile &projectile: projectiles_) {
-//    projectile.MoveProjectileUp();
-//  }
-  
   for (auto projectile = projectiles_.begin(); projectile != projectiles_.end(); ++projectile) {
     projectile->MoveProjectileUp();
     
-    float erase_threshold = 5.0f;
+    float erase_threshold = 3.0f;
     if (projectile->GetPosition().y > erase_threshold) {
       projectiles_.erase(projectile);
       --projectile;
+    }
+    
+    // Check collisions
+    for (auto enemy = enemies_.begin(); enemy != enemies_.end(); ++enemy) {
+      if (enemy->GetPosition().y <= projectile->GetPosition().y) {
+        if (enemy->GetPosition().x - 0.3 <= projectile->GetPosition().x
+            && enemy->GetPosition().x + 0.3 >= projectile->GetPosition().x) {
+//          projectiles_.erase(projectile);
+          enemies_.erase(enemy);
+          projectiles_.erase(projectile);
+          --enemy;
+          --projectile;
+        }
+      }
     }
   }
 }
 
 void GameEngine::UpdateEnemies() {
-//  for (Enemy &enemy: enemies_) {
-//    enemy.MoveEnemyDown();
-//  }
-
   for (auto enemy = enemies_.begin(); enemy != enemies_.end(); ++enemy) {
     enemy->MoveEnemyDown();
 
@@ -101,8 +105,6 @@ void GameEngine::UpdateEnemies() {
       --enemy;
     }
   }
-  std::cout << enemies_.size() << std::endl;
-
 }
 
 const size_t GameEngine::ProjectilesOnScreen() const {

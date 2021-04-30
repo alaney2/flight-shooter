@@ -19,7 +19,7 @@ class FlightShooter : public ci::app::App {
  private:
   GameEngine engine_;
   size_t score_ = 0;
-  const size_t kMaxProjectiles_ = 3;
+  const size_t kMaxProjectiles_ = 5;
   const int kWindowWidth_ = 720;
   const int kWindowLength_ = 720;
 };
