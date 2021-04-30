@@ -4,6 +4,7 @@
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 #include "game_engine.h"
+#include "common.h"
 
 namespace flightshooter {
 

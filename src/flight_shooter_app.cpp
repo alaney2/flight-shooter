@@ -14,6 +14,12 @@ void FlightShooter::draw() {
 }
 
 void FlightShooter::update() {
+  if (score_ % 20 == 0) {
+    double f = static_cast<double>(rand()) / RAND_MAX;
+    double x_pos = -kBoundary_ + f * (2 * kBoundary_);
+    ci::vec3 enemy_pos(x_pos, 2, 0);
+    engine_.SpawnEnemy(enemy_pos);
+  }
   engine_.AdvanceOneFrame();
   ++score_;
 }
