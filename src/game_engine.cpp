@@ -16,7 +16,6 @@ void GameEngine::AdvanceOneFrame() {
   player_.UpdatePosition();
   UpdateProjectiles();
   UpdateEnemies();
-  std::cout << enemies_.size() << " " << projectiles_.size() << std::endl;
 }
 
 Player& GameEngine::GetPlayerAddress() {

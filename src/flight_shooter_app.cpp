@@ -11,6 +11,7 @@ void FlightShooter::draw() {
   ci::gl::clear(background_color);
 
   engine_.Display();
+  ci::gl::drawStringCentered(std::to_string(score_), glm::vec2(0, 0));
 }
 
 void FlightShooter::update() {
