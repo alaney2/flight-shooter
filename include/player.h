@@ -3,6 +3,7 @@
 #include "cinder/gl/gl.h"
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
+#include "common.h"
 
 namespace flightshooter {
 
@@ -41,7 +42,6 @@ class Player {
   ci::vec3 position_;
   const ci::vec3 kScale_ = ci::vec3(0.5, 0.4, 0.4);
   const float kPlayerSpeed_ = 0.05;
-  const double kBoundary_ = 1.2;
 };
 
 }

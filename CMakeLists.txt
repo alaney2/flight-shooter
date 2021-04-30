@@ -54,7 +54,8 @@ list(APPEND SOURCE_FILES
         src/game_engine.cpp
         src/player.cpp
         src/projectile.cpp
-        src/enemy.cpp)
+        src/enemy.cpp
+        src/common.cpp)
 
 list(APPEND TEST_FILES 
         tests/game_engine_test.cpp

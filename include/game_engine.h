@@ -5,6 +5,7 @@
 #include "cinder/gl/gl.h"
 #include "player.h"
 #include "projectile.h"
+#include "enemy.h"
 
 namespace flightshooter {
 
@@ -24,11 +25,6 @@ class GameEngine {
   
   /**
    * 
-   */
-  const void DrawPlayer() const;
-  
-  /**
-   * 
    * @return 
    */
   Player& GetPlayerAddress();
@@ -44,6 +40,8 @@ class GameEngine {
    */
   void SpawnProjectile(const ci::vec3 &position);
   
+  void SpawnEnemy(const ci::vec3 &position);
+  
   /**
    * 
    */
@@ -54,6 +52,7 @@ class GameEngine {
  private:
   Player player_;
   std::vector<Projectile> projectiles_;
+  std::vector<Enemy> enemies_;
 };
 
 }
