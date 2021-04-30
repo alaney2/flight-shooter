@@ -53,7 +53,8 @@ list(APPEND SOURCE_FILES
         src/flight_shooter_app.cpp
         src/game_engine.cpp
         src/player.cpp
-        src/projectile.cpp)
+        src/projectile.cpp
+        src/enemy.cpp)
 
 list(APPEND TEST_FILES 
         tests/game_engine_test.cpp
