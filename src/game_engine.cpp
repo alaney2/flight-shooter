@@ -14,7 +14,6 @@ const void GameEngine::Display() const {
   } else {
     DrawShapes();
   }
-//  ci::gl::draw(ci::gl::Texture::create(loadImage(ci::app::loadAsset("space.jpg"))));
 }
 
 void GameEngine::AdvanceOneFrame() {
@@ -32,9 +31,7 @@ const void GameEngine::DisplayStartMenu() const {
   ci::gl::draw(ci::gl::Texture::create(loadImage(ci::app::loadAsset("space.jpg"))));
 
   ci::gl::drawStringCentered(("Flight Shooter"), glm::vec2(kWindowLength_/2, 2*kWindowLength_/5), "white", ci::Font("Helvetica", 32));
-
   ci::gl::drawStringCentered(("Press spacebar to begin"), glm::vec2(kWindowLength_/2, 2*kWindowLength_/3), "white", ci::Font("Helvetica", 20));
-
 }
 
 const void GameEngine::DrawShapes() const {
@@ -72,10 +69,6 @@ const void GameEngine::DrawShapes() const {
     ci::gl::drawCube(enemy.GetPosition(), enemy.GetScale());
     ci::gl::popModelMatrix();
   }
-}
-
-const void GameEngine::DisplayGameOver() const {
-  
 }
 
 void GameEngine::SpawnProjectile(const vec3& position) {
@@ -117,11 +110,12 @@ void GameEngine::UpdateEnemies() {
   for (auto enemy = enemies_.begin(); enemy != enemies_.end(); ++enemy) {
     enemy->MoveEnemyDown();
 
-    float erase_threshold = -3.0f;
+    float erase_threshold = -1.0f;
     if (enemy->GetPosition().y < erase_threshold) {
       game_over_ = true;
-      enemies_.erase(enemy);
-      --enemy;
+      enemies_.clear();
+      projectiles_.clear();
+      break;
     }
   }
 }

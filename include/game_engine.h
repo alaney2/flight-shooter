@@ -40,11 +40,6 @@ class GameEngine {
    * 
    */
   const void DrawShapes() const;
-
-  /**
-   * 
-   */
-  const void DisplayGameOver() const;
   
   /**
    * 
