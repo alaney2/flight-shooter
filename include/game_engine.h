@@ -4,6 +4,7 @@
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
+#include "common.h"
 #include "player.h"
 #include "projectile.h"
 #include "enemy.h"
@@ -33,8 +34,18 @@ class GameEngine {
   /**
    * 
    */
+  const void DisplayStartMenu() const;
+  
+  /**
+   * 
+   */
   const void DrawShapes() const;
 
+  /**
+   * 
+   */
+  const void DisplayGameOver() const;
+  
   /**
    * 
    * @param position 
@@ -52,7 +63,17 @@ class GameEngine {
   
   const size_t ProjectilesOnScreen() const;
   
+  void StartGame();
+  
+  const bool OnStartMenu() const;
+  
+  const bool IsGameOver() const;
+  
+  void SetGameOver(bool game_over);
+      
  private:
+  bool on_start_menu_ = true;
+  bool game_over_ = false;
   Player player_;
   std::vector<Projectile> projectiles_;
   std::vector<Enemy> enemies_;

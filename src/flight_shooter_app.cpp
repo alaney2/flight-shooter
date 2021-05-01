@@ -7,24 +7,24 @@ FlightShooter::FlightShooter() {
 }
 
 void FlightShooter::draw() {
-  std::cout << ci::app::getAssetPath("soace.jpeg") << std::endl;
-//  ci::gl::draw(ci::gl::Texture::create(loadImage(ci::app::loadAsset("space.jpeg"))));
-  ci::Color background_color("black");
-  ci::gl::clear(background_color);
-  
-  engine_.Display();
-//  ci::gl::drawStringCentered(std::to_string(score_), glm::vec2(0, 0));
+  if (!engine_.IsGameOver()) {
+    engine_.Display();
+  } else {
+    DisplayGameOverMenu();
+  }
 }
 
 void FlightShooter::update() {
-  if (score_ % 40 == 0) {
-    double f = static_cast<double>(rand()) / RAND_MAX;
-    double x_pos = -kBoundary_ + f * (2 * kBoundary_);
-    ci::vec3 enemy_pos(x_pos, 2, 0);
-    engine_.SpawnEnemy(enemy_pos);
+  if (!engine_.IsGameOver() && !engine_.OnStartMenu()) {
+    if (score_ % 40 == 0 && score_ >= 200) {
+      double f = static_cast<double>(rand()) / RAND_MAX;
+      double x_pos = -kBoundary_ + f * (2 * kBoundary_);
+      ci::vec3 enemy_pos(x_pos, 2, 0);
+      engine_.SpawnEnemy(enemy_pos);
+    }
+    engine_.AdvanceOneFrame();
+    ++score_;
   }
-  engine_.AdvanceOneFrame();
-  ++score_;
 }
 
 void FlightShooter::keyDown(cinder::app::KeyEvent event) {
@@ -39,6 +39,14 @@ void FlightShooter::keyDown(cinder::app::KeyEvent event) {
       engine_.SpawnProjectile(engine_.GetPlayerAddress().GetPosition());
     }
   }
+  
+  if (event.getCode() == cinder::app::KeyEvent::KEY_SPACE) {
+    engine_.StartGame();
+  }
+  
+  if (event.getCode() == cinder::app::KeyEvent::KEY_r) {
+    engine_.SetGameOver(false);
+  }
 }
 
 void FlightShooter::keyUp(cinder::app::KeyEvent event) {
@@ -46,6 +54,11 @@ void FlightShooter::keyUp(cinder::app::KeyEvent event) {
     || event.getCode() == cinder::app::KeyEvent::KEY_d) {
     engine_.GetPlayerAddress().ToggleMovement(false);
   }
+}
+const void FlightShooter::DisplayGameOverMenu() const {
+  ci::gl::drawStringCentered(("GAMEOVER"), glm::vec2(kWindowLength_/2, 2*kWindowLength_/5), "white", ci::Font("Helvetica", 32));
+  ci::gl::drawStringCentered(("Press 'R' to play again"), glm::vec2(kWindowLength_/2, 2*kWindowLength_/5), "white", ci::Font("Helvetica", 32));
+
 }
 
 } // namespace flightshooter
