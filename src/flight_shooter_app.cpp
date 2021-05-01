@@ -7,11 +7,13 @@ FlightShooter::FlightShooter() {
 }
 
 void FlightShooter::draw() {
+  std::cout << ci::app::getAssetPath("soace.jpeg") << std::endl;
+//  ci::gl::draw(ci::gl::Texture::create(loadImage(ci::app::loadAsset("space.jpeg"))));
   ci::Color background_color("black");
   ci::gl::clear(background_color);
-
+  
   engine_.Display();
-  ci::gl::drawStringCentered(std::to_string(score_), glm::vec2(0, 0));
+//  ci::gl::drawStringCentered(std::to_string(score_), glm::vec2(0, 0));
 }
 
 void FlightShooter::update() {

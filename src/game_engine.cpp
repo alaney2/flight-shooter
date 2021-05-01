@@ -83,7 +83,6 @@ void GameEngine::UpdateProjectiles() {
       if (enemy->GetPosition().y <= projectile->GetPosition().y) {
         if (enemy->GetPosition().x - 0.3 <= projectile->GetPosition().x
             && enemy->GetPosition().x + 0.3 >= projectile->GetPosition().x) {
-//          projectiles_.erase(projectile);
           enemies_.erase(enemy);
           projectiles_.erase(projectile);
           --enemy;
