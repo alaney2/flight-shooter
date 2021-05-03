@@ -2,7 +2,8 @@
 
 namespace flightshooter {
 
-Enemy::Enemy(const glm::vec3& position) : position_(position) { }
+Enemy::Enemy(const glm::vec3& position) : position_(position) {
+}
 
 void Enemy::MoveEnemyDown(double speed) {
   position_.y -= static_cast<float>(speed);
@@ -13,11 +14,11 @@ const ci::vec3 Enemy::GetPosition() const {
 }
 
 const ci::vec3 Enemy::GetScale() const {
-  return kScale_;
+  return scale_;
 }
 
 const double Enemy::GetSpeed() const {
-  return kEnemySpeed_;
+  return enemy_speed_;
 }
 
-}
+}  // namespace flightshooter

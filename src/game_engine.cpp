@@ -30,41 +30,46 @@ const void GameEngine::DisplayStartMenu() const {
   ci::gl::clear();
 
   ci::CameraPersp cam;
-  cam.lookAt( vec3( 0, 0, -360), vec3(360,360,0));
-  ci::gl::setMatrices( cam );
+  cam.lookAt(vec3(0, 0, -360), vec3(360, 360, 0));
+  ci::gl::setMatrices(cam);
 
-  ci::gl::draw(ci::gl::Texture::create(loadImage(ci::app::loadAsset("space.jpg"))));
+  ci::gl::draw(
+      ci::gl::Texture::create(loadImage(ci::app::loadAsset("space.jpg"))));
 
-  ci::gl::drawStringCentered(("ɹǝʇooɥs ʇɥbıןɟ"), glm::vec2(kWindowLength_/2, 2*kWindowLength_/5), "white", ci::Font("Times", 32));
-  ci::gl::drawStringCentered(("uıbǝq oʇ ɹɐqǝɔɐds ssǝɹd"), glm::vec2(kWindowLength_/2, kWindowLength_/2), "white", ci::Font("Times", 20));
+  ci::gl::drawStringCentered(
+      ("ɹǝʇooɥs ʇɥbıןɟ"), glm::vec2(kWindowLength / 2, 2 * kWindowLength / 5),
+      "white", ci::Font("Times", 32));
+  ci::gl::drawStringCentered(("uıbǝq oʇ ɹɐqǝɔɐds ssǝɹd"),
+                             glm::vec2(kWindowLength / 2, kWindowLength / 2),
+                             "white", ci::Font("Times", 20));
 }
 
 const void GameEngine::DrawShapes() const {
   // Draw player
-  ci::gl::clear(ci::Color( 0.5f, 0.5f, 0.5f ));
+  ci::gl::clear(ci::Color(0.5f, 0.5f, 0.5f));
   ci::gl::enableDepthRead();
   ci::gl::enableDepthWrite();
 
   ci::CameraPersp cam;
-  cam.lookAt( vec3(0, 0, 4), vec3( 0));
+  cam.lookAt(vec3(0, 0, 4), vec3(0));
   ci::gl::setMatrices(cam);
-  
+
   auto lambert = ci::gl::ShaderDef().lambert();
   auto shader = ci::gl::getStockShader(lambert);
   shader->bind();
-  
+
   ci::gl::translate(0, -0.8, 0);
-  ci::gl::drawCube( player_.GetPosition(), player_.GetScale());
-  
+  ci::gl::drawCube(player_.GetPosition(), player_.GetScale());
+
   // Draw projectiles
-  for (const Projectile& projectile: projectiles_) {
+  for (const Projectile& projectile : projectiles_) {
     ci::gl::pushModelMatrix();
     ci::gl::drawSphere(projectile.GetPosition(), projectile.GetRadius());
     ci::gl::popModelMatrix();
   }
-  
-  //Draw enemies
-  for (const Enemy& enemy: enemies_) {
+
+  // Draw enemies
+  for (const Enemy& enemy : enemies_) {
     ci::gl::pushModelMatrix();
     ci::gl::drawCube(enemy.GetPosition(), enemy.GetScale());
     ci::gl::popModelMatrix();
@@ -82,20 +87,21 @@ void GameEngine::SpawnEnemy(const vec3& position) {
 }
 
 void GameEngine::UpdateProjectiles() {
-  for (auto projectile = projectiles_.begin(); projectile != projectiles_.end(); ++projectile) {
+  for (auto projectile = projectiles_.begin(); projectile != projectiles_.end();
+       ++projectile) {
     projectile->MoveProjectileUp();
-    
+
     float erase_threshold = 3.0f;
     if (projectile->GetPosition().y > erase_threshold) {
       projectiles_.erase(projectile);
       --projectile;
     }
-    
+
     // Check collisions
     for (auto enemy = enemies_.begin(); enemy != enemies_.end(); ++enemy) {
       if (enemy->GetPosition().y - 0.2 <= projectile->GetPosition().y) {
-        if (enemy->GetPosition().x - 0.3 <= projectile->GetPosition().x
-            && enemy->GetPosition().x + 0.3 >= projectile->GetPosition().x) {
+        if (enemy->GetPosition().x - 0.3 <= projectile->GetPosition().x &&
+            enemy->GetPosition().x + 0.3 >= projectile->GetPosition().x) {
           enemies_.erase(enemy);
           projectiles_.erase(projectile);
           --enemy;
@@ -108,7 +114,8 @@ void GameEngine::UpdateProjectiles() {
 
 void GameEngine::UpdateEnemies() {
   for (auto enemy = enemies_.begin(); enemy != enemies_.end(); ++enemy) {
-    enemy->MoveEnemyDown(enemy->GetSpeed() + speed_counter_ * kSpeedIncreaseConstant);
+    enemy->MoveEnemyDown(enemy->GetSpeed() +
+                         speed_counter_ * kSpeedIncreaseConstant);
 
     float erase_threshold = -1.0f;
     if (enemy->GetPosition().y < erase_threshold) {
@@ -144,5 +151,4 @@ void GameEngine::IncreaseSpeedCounter() {
   speed_counter_ += 1;
 }
 
-
-}
+}  // namespace flightshooter

@@ -3,14 +3,14 @@
 namespace flightshooter {
 
 const ci::vec3 Player::GetScale() const {
-  return kScale_;
+  return kScale;
 }
 
 void Player::Strafe(char direction) {
   if (direction == 'a') {
     position_.x -= kPlayerSpeed_;
   }
-  
+
   if (direction == 'd') {
     position_.x += kPlayerSpeed_;
   }
@@ -31,10 +31,10 @@ void Player::UpdatePosition() {
   if (moving_right_) {
     Strafe('d');
   }
-  if (position_.x >= kBoundary_) {
-    position_.x = static_cast<float>(kBoundary_);
-  } else if (position_.x <= -kBoundary_) {
-    position_.x = static_cast<float>(-kBoundary_);
+  if (position_.x >= kBoundary) {
+    position_.x = static_cast<float>(kBoundary);
+  } else if (position_.x <= -kBoundary) {
+    position_.x = static_cast<float>(-kBoundary);
   }
 }
 
@@ -46,4 +46,4 @@ void Player::SetMovingRight(bool right) {
   moving_right_ = right;
 }
 
-}
+}  // namespace flightshooter

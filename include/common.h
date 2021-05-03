@@ -2,8 +2,8 @@
 
 namespace flightshooter {
 
-const double kBoundary_ = 1.2;
-const int kWindowWidth_ = 720;
-const int kWindowLength_ = 720;
+const double kBoundary = 1.2;   // end bounds for player's moves in x direction
+const int kWindowWidth = 720;   // window width
+const int kWindowLength = 720;  // window length
 
-}
+}  // namespace flightshooter
