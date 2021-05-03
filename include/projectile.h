@@ -10,14 +10,12 @@ class Projectile {
   Projectile(const ci::vec3 &position);
   void MoveProjectileUp();
   const ci::vec3 GetPosition() const;
-  const ci::vec3 GetScale() const;
   const float GetRadius() const;
   
  private:
   // Nothing can be const here in order to use erase on a vector of Projectiles
-  double kProjectileSpeed_ = 0.06;
+  double projectile_speed_ = 0.06;
   ci::vec3 position_;
-  ci::vec3 kScale_ = ci::vec3(0.3, 1, 1);
   float kRadius_ = 0.1;
 };
 }

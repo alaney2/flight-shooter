@@ -30,7 +30,6 @@ const void GameEngine::DisplayStartMenu() const {
   ci::gl::clear();
 
   ci::CameraPersp cam;
-  
   cam.lookAt( vec3( 0, 0, -360), vec3(360,360,0));
   ci::gl::setMatrices( cam );
 
@@ -43,15 +42,13 @@ const void GameEngine::DisplayStartMenu() const {
 const void GameEngine::DrawShapes() const {
   // Draw player
   ci::gl::clear(ci::Color( 0.5f, 0.5f, 0.5f ));
-
   ci::gl::enableDepthRead();
   ci::gl::enableDepthWrite();
 
   ci::CameraPersp cam;
   cam.lookAt( vec3(0, 0, 4), vec3( 0));
   ci::gl::setMatrices(cam);
-
-
+  
   auto lambert = ci::gl::ShaderDef().lambert();
   auto shader = ci::gl::getStockShader(lambert);
   shader->bind();
@@ -62,17 +59,13 @@ const void GameEngine::DrawShapes() const {
   // Draw projectiles
   for (const Projectile& projectile: projectiles_) {
     ci::gl::pushModelMatrix();
-
-//    ci::gl::scale(projectile.GetScale());
     ci::gl::drawSphere(projectile.GetPosition(), projectile.GetRadius());
-
     ci::gl::popModelMatrix();
   }
   
   //Draw enemies
   for (const Enemy& enemy: enemies_) {
     ci::gl::pushModelMatrix();
-
     ci::gl::drawCube(enemy.GetPosition(), enemy.GetScale());
     ci::gl::popModelMatrix();
   }
@@ -115,7 +108,7 @@ void GameEngine::UpdateProjectiles() {
 
 void GameEngine::UpdateEnemies() {
   for (auto enemy = enemies_.begin(); enemy != enemies_.end(); ++enemy) {
-    enemy->MoveEnemyDown();
+    enemy->MoveEnemyDown(enemy->GetSpeed() + speed_counter_ * kSpeedIncreaseConstant);
 
     float erase_threshold = -1.0f;
     if (enemy->GetPosition().y < erase_threshold) {
@@ -145,6 +138,10 @@ const bool GameEngine::OnStartMenu() const {
 
 void GameEngine::SetStartMenu(bool start_menu) {
   on_start_menu_ = start_menu;
+}
+
+void GameEngine::IncreaseSpeedCounter() {
+  speed_counter_ += 1;
 }
 
 }

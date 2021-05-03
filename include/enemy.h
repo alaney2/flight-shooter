@@ -9,9 +9,10 @@ namespace flightshooter {
 class Enemy {
  public:
   Enemy(const ci::vec3 &position);
-  void MoveEnemyDown();
+  void MoveEnemyDown(double speed);
   const ci::vec3 GetPosition() const;
   const ci::vec3 GetScale() const;
+  const double GetSpeed() const;
   
  private:
   // Nothing can be const here in order to use erase on a vector of Enemies

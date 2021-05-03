@@ -58,6 +58,8 @@ class GameEngine {
   
   const size_t ProjectilesOnScreen() const;
   
+  void IncreaseSpeedCounter();
+  
   const bool OnStartMenu() const;
   
   const bool IsGameOver() const;
@@ -67,6 +69,8 @@ class GameEngine {
   void SetStartMenu(bool start_menu);
       
  private:
+  double speed_counter_ = 0;
+  double kSpeedIncreaseConstant = 0.005;
   bool on_start_menu_ = true;
   bool game_over_ = false;
   Player player_;

@@ -23,6 +23,9 @@ void FlightShooter::update() {
       ci::vec3 enemy_pos(x_pos, 2, 0);
       engine_.SpawnEnemy(enemy_pos);
     }
+    if (score_ % 200 == 0) {
+      engine_.IncreaseSpeedCounter();
+    }
     engine_.AdvanceOneFrame();
     ++score_;
   }
@@ -68,7 +71,6 @@ const void FlightShooter::DisplayGameOverMenu() const {
   ci::CameraPersp cam;
   cam.lookAt(ci::vec3( 0, 0, -360), ci::vec3(360,360,0));
   ci::gl::setMatrices( cam );
-  std::cout << cam.getEyePoint() << std::endl;
   
   ci::gl::drawStringCentered(("ɹǝʌoǝɯɐb"), glm::vec2(kWindowLength_/2, 2*kWindowLength_/5), "white", ci::Font("Times", 32));
   ci::gl::drawStringCentered(std::to_string(score_) + " :ǝɹoɔs", glm::vec2(kWindowLength_/2, kWindowLength_/2), "white", ci::Font("Times", 32));
