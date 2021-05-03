@@ -25,6 +25,7 @@ void FlightShooter::update() {
     }
     if (score_ % 300 == 0) {
       engine_.IncreaseSpeedCounter();
+      engine_.GetPlayerAddress().SetSpeed(engine_.GetPlayerAddress().GetSpeed() + engine_.GetSpeedCounter() * engine_.GetIncreaseSpeedConstant());
     }
     engine_.AdvanceOneFrame();
     ++score_;
@@ -57,6 +58,7 @@ void FlightShooter::keyDown(cinder::app::KeyEvent event) {
   if (event.getCode() == cinder::app::KeyEvent::KEY_r && engine_.IsGameOver()) {
     score_ = 0;
     engine_.SetGameOver(false);
+    engine_.ResetGame();
   }
 }
 

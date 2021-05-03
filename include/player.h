@@ -24,8 +24,10 @@ class Player {
   // Getter methods
   const ci::vec3 GetScale() const;
   const ci::vec3 GetPosition() const;
-
+  const float GetSpeed() const;
+  
   // Setter methods
+  void SetSpeed(float speed);
   void SetPosition(const ci::vec3 &position);
   void SetMovingLeft(bool left);
   void SetMovingRight(bool right);
@@ -33,7 +35,7 @@ class Player {
  private:
   const ci::vec3 kScale =
       ci::vec3(0.5, 0.4, 0.4);       // how much player is scaled by
-  const float kPlayerSpeed_ = 0.05;  // player move speed
+  float player_speed_ = 0.045;  // player move speed
 
   bool moving_left_ = false;   // determines whether player is moving left
   bool moving_right_ = false;  // determines whether player is moving right

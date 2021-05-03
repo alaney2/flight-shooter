@@ -8,11 +8,11 @@ const ci::vec3 Player::GetScale() const {
 
 void Player::Strafe(char direction) {
   if (direction == 'a') {
-    position_.x -= kPlayerSpeed_;
+    position_.x -= player_speed_;
   }
 
   if (direction == 'd') {
-    position_.x += kPlayerSpeed_;
+    position_.x += player_speed_;
   }
 }
 
@@ -44,6 +44,14 @@ void Player::SetMovingLeft(bool left) {
 
 void Player::SetMovingRight(bool right) {
   moving_right_ = right;
+}
+
+const float Player::GetSpeed() const {
+  return player_speed_;
+}
+
+void Player::SetSpeed(float speed) { 
+  player_speed_ = speed;
 }
 
 }  // namespace flightshooter

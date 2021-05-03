@@ -151,4 +151,17 @@ void GameEngine::IncreaseSpeedCounter() {
   speed_counter_ += 1;
 }
 
+void GameEngine::ResetGame() {
+  speed_counter_ = 0;
+  player_.SetSpeed(0.045);
+}
+
+const double GameEngine::GetSpeedCounter() const {
+  return speed_counter_;
+}
+
+const double GameEngine::GetIncreaseSpeedConstant() const {
+  return kSpeedIncreaseConstant;
+}
+
 }  // namespace flightshooter

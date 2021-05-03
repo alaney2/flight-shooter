@@ -78,7 +78,12 @@ class GameEngine {
    * @return number of projecties on screen
    */
   const size_t ProjectilesOnScreen() const;
-
+  
+  /**
+   * 
+   */
+  void ResetGame();
+  
   /**
    * Returns whether player is on start menu.
    *
@@ -92,7 +97,11 @@ class GameEngine {
    * @return true if over false otherwise
    */
   const bool IsGameOver() const;
-
+  
+  const double GetSpeedCounter() const;
+  
+  const double GetIncreaseSpeedConstant() const;
+  
   // Setter methods
   void SetGameOver(bool game_over);
   void SetStartMenu(bool start_menu);
