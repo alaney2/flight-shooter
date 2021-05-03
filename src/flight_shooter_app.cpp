@@ -10,8 +10,8 @@ void FlightShooter::draw() {
   if (!engine_.IsGameOver()) {
     engine_.Display();
   } else {
-    DisplayGameOverMenu();
     high_score_ = std::max(score_, high_score_);
+    DisplayGameOverMenu();
   }
 }
 
@@ -45,7 +45,7 @@ void FlightShooter::keyDown(cinder::app::KeyEvent event) {
   
   // Start game
   if (event.getCode() == cinder::app::KeyEvent::KEY_SPACE) {
-    engine_.StartGame();
+    engine_.SetStartMenu(false);
   }
   
   // Restart game
@@ -64,13 +64,16 @@ void FlightShooter::keyUp(cinder::app::KeyEvent event) {
 
 const void FlightShooter::DisplayGameOverMenu() const {
   ci::gl::clear();
-  ci::Color background_color("black");
-  ci::gl::clear(background_color);
+
+  ci::CameraPersp cam;
+  cam.lookAt(ci::vec3( 0, 0, -360), ci::vec3(360,360,0));
+  ci::gl::setMatrices( cam );
+  std::cout << cam.getEyePoint() << std::endl;
   
-  ci::gl::drawStringCentered(("GAMEOVER"), glm::vec2(kWindowLength_/2, 2*kWindowLength_/5), "white", ci::Font("Helvetica", 32));
-  ci::gl::drawStringCentered("Score: " + std::to_string(score_), glm::vec2(kWindowLength_/2, kWindowLength_/2), "white", ci::Font("Helvetica", 32));
-  ci::gl::drawStringCentered("High score: " + std::to_string(high_score_), glm::vec2(kWindowLength_/2, 3*kWindowLength_/5), "white", ci::Font("Helvetica", 32));
-  ci::gl::drawStringCentered(("Press 'R' to play again"), glm::vec2(kWindowLength_/2, 2*kWindowLength_/3), "white", ci::Font("Helvetica", 32));
+  ci::gl::drawStringCentered(("ɹǝʌoǝɯɐb"), glm::vec2(kWindowLength_/2, 2*kWindowLength_/5), "white", ci::Font("Times", 32));
+  ci::gl::drawStringCentered(std::to_string(score_) + " :ǝɹoɔs", glm::vec2(kWindowLength_/2, kWindowLength_/2), "white", ci::Font("Times", 32));
+  ci::gl::drawStringCentered(std::to_string(high_score_) + " :ǝɹoɔs ɥbıɥ", glm::vec2(kWindowLength_/2, 3*kWindowLength_/5), "white", ci::Font("Times", 32));
+  ci::gl::drawStringCentered(("uıɐbɐ ʎɐןd oʇ ,ɹ, ssǝɹd"), glm::vec2(kWindowLength_/2, 2*kWindowLength_/3), "white", ci::Font("Times", 32));
 }
 
 } // namespace flightshooter

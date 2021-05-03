@@ -58,13 +58,13 @@ class GameEngine {
   
   const size_t ProjectilesOnScreen() const;
   
-  void StartGame();
-  
   const bool OnStartMenu() const;
   
   const bool IsGameOver() const;
   
   void SetGameOver(bool game_over);
+  
+  void SetStartMenu(bool start_menu);
       
  private:
   bool on_start_menu_ = true;

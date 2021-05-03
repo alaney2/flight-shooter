@@ -28,10 +28,16 @@ Player& GameEngine::GetPlayerAddress() {
 
 const void GameEngine::DisplayStartMenu() const {
   ci::gl::clear();
+
+  ci::CameraPersp cam;
+  
+  cam.lookAt( vec3( 0, 0, -360), vec3(360,360,0));
+  ci::gl::setMatrices( cam );
+
   ci::gl::draw(ci::gl::Texture::create(loadImage(ci::app::loadAsset("space.jpg"))));
 
-  ci::gl::drawStringCentered(("Flight Shooter"), glm::vec2(kWindowLength_/2, 2*kWindowLength_/5), "white", ci::Font("Helvetica", 32));
-  ci::gl::drawStringCentered(("Press spacebar to begin"), glm::vec2(kWindowLength_/2, 2*kWindowLength_/3), "white", ci::Font("Helvetica", 20));
+  ci::gl::drawStringCentered(("ɹǝʇooɥs ʇɥbıןɟ"), glm::vec2(kWindowLength_/2, 2*kWindowLength_/5), "white", ci::Font("Times", 32));
+  ci::gl::drawStringCentered(("uıbǝq oʇ ɹɐqǝɔɐds ssǝɹd"), glm::vec2(kWindowLength_/2, kWindowLength_/2), "white", ci::Font("Times", 20));
 }
 
 const void GameEngine::DrawShapes() const {
@@ -42,8 +48,9 @@ const void GameEngine::DrawShapes() const {
   ci::gl::enableDepthWrite();
 
   ci::CameraPersp cam;
-  cam.lookAt( vec3( 0, 0, 4), vec3( 0,0,0));
+  cam.lookAt( vec3(0, 0, 4), vec3( 0));
   ci::gl::setMatrices(cam);
+
 
   auto lambert = ci::gl::ShaderDef().lambert();
   auto shader = ci::gl::getStockShader(lambert);
@@ -124,12 +131,6 @@ const size_t GameEngine::ProjectilesOnScreen() const {
   return projectiles_.size();
 }
 
-void GameEngine::StartGame() {
-  on_start_menu_ = false;
-}
-
-
-
 const bool GameEngine::IsGameOver() const {
   return game_over_;
 }
@@ -140,6 +141,10 @@ void GameEngine::SetGameOver(bool game_over) {
 
 const bool GameEngine::OnStartMenu() const {
   return on_start_menu_;
+}
+
+void GameEngine::SetStartMenu(bool start_menu) {
+  on_start_menu_ = start_menu;
 }
 
 }
