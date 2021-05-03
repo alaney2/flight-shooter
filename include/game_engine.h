@@ -78,12 +78,12 @@ class GameEngine {
    * @return number of projecties on screen
    */
   const size_t ProjectilesOnScreen() const;
-  
+
   /**
-   * 
+   *
    */
   void ResetGame();
-  
+
   /**
    * Returns whether player is on start menu.
    *
@@ -97,17 +97,23 @@ class GameEngine {
    * @return true if over false otherwise
    */
   const bool IsGameOver() const;
-  
+
+  // Getter methods
   const double GetSpeedCounter() const;
-  
   const double GetIncreaseSpeedConstant() const;
-  
+
   // Setter methods
   void SetGameOver(bool game_over);
   void SetStartMenu(bool start_menu);
 
  private:
-  const double kSpeedIncreaseConstant = 0.005;  // constant speed increases by
+  const double kSpeedIncreaseConstant = 0.005;   // constant speed increases by
+  const double kResetSpeed = 0.045;              // speed to reset to
+  const float kEnemyEraseThreshold = -1.0f;      // erase threshold
+  const float kProjectileEraseThreshold = 3.0f;  // projectile erase threshold
+  const double kCenterToBottom =
+      0.2;                           // distance from center of enemy to bottom
+  const double kCenterToSide = 0.3;  // distance from center of enemy to side
 
   double speed_counter_ = 0;   // counter for acceleration purpose
   bool on_start_menu_ = true;  // boolean that determines whether on start menu

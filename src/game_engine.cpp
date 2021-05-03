@@ -91,7 +91,7 @@ void GameEngine::UpdateProjectiles() {
        ++projectile) {
     projectile->MoveProjectileUp();
 
-    float erase_threshold = 3.0f;
+    float erase_threshold = kProjectileEraseThreshold;
     if (projectile->GetPosition().y > erase_threshold) {
       projectiles_.erase(projectile);
       --projectile;
@@ -99,9 +99,12 @@ void GameEngine::UpdateProjectiles() {
 
     // Check collisions
     for (auto enemy = enemies_.begin(); enemy != enemies_.end(); ++enemy) {
-      if (enemy->GetPosition().y - 0.2 <= projectile->GetPosition().y) {
-        if (enemy->GetPosition().x - 0.3 <= projectile->GetPosition().x &&
-            enemy->GetPosition().x + 0.3 >= projectile->GetPosition().x) {
+      if (enemy->GetPosition().y - kCenterToBottom <=
+          projectile->GetPosition().y) {
+        if (enemy->GetPosition().x - kCenterToSide <=
+                projectile->GetPosition().x &&
+            enemy->GetPosition().x + kCenterToSide >=
+                projectile->GetPosition().x) {
           enemies_.erase(enemy);
           projectiles_.erase(projectile);
           --enemy;
@@ -117,7 +120,7 @@ void GameEngine::UpdateEnemies() {
     enemy->MoveEnemyDown(enemy->GetSpeed() +
                          speed_counter_ * kSpeedIncreaseConstant);
 
-    float erase_threshold = -1.0f;
+    float erase_threshold = kEnemyEraseThreshold;
     if (enemy->GetPosition().y < erase_threshold) {
       game_over_ = true;
       enemies_.clear();
@@ -153,7 +156,7 @@ void GameEngine::IncreaseSpeedCounter() {
 
 void GameEngine::ResetGame() {
   speed_counter_ = 0;
-  player_.SetSpeed(0.045);
+  player_.SetSpeed(static_cast<float>(kResetSpeed));
 }
 
 const double GameEngine::GetSpeedCounter() const {

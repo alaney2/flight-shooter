@@ -17,15 +17,18 @@ void FlightShooter::draw() {
 
 void FlightShooter::update() {
   if (!engine_.IsGameOver() && !engine_.OnStartMenu()) {
-    if (score_ % 40 == 0 && score_ > 100) {
+    if (score_ % kEnemyGeneratingFactor == 0 &&
+        score_ > kEnemyGeneratingScore) {
       double f = static_cast<double>(rand()) / RAND_MAX;
       double x_pos = -kBoundary + f * (2 * kBoundary);
       ci::vec3 enemy_pos(x_pos, 2, 0);
       engine_.SpawnEnemy(enemy_pos);
     }
-    if (score_ % 300 == 0) {
+    if (score_ % kAccelerationDistance == 0) {
       engine_.IncreaseSpeedCounter();
-      engine_.GetPlayerAddress().SetSpeed(engine_.GetPlayerAddress().GetSpeed() + engine_.GetSpeedCounter() * engine_.GetIncreaseSpeedConstant());
+      engine_.GetPlayerAddress().SetSpeed(static_cast<float>(
+          engine_.GetPlayerAddress().GetSpeed() +
+          engine_.GetSpeedCounter() * engine_.GetIncreaseSpeedConstant()));
     }
     engine_.AdvanceOneFrame();
     ++score_;

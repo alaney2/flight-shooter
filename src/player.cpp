@@ -50,7 +50,7 @@ const float Player::GetSpeed() const {
   return player_speed_;
 }
 
-void Player::SetSpeed(float speed) { 
+void Player::SetSpeed(float speed) {
   player_speed_ = speed;
 }
 
