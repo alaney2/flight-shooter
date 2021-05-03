@@ -17,28 +17,20 @@ class Player {
   
   /**
    * 
-   * @param is_moving 
-   */
-  void ToggleMovement(bool is_moving);
-  
-  /**
-   * 
-   * @param direction 
-   */
-  void SetMovementDirection(char direction);
-
-  /**
-   * 
    */
   void UpdatePosition();
 
   const ci::vec3 GetScale() const;
   const ci::vec3 GetPosition() const;
   void SetPosition(const ci::vec3 &position);
+  void SetMovingLeft(bool left);
+
+  void SetMovingRight(bool right);
+  
   
  private:
-  bool moving_ = false;
-  char movement_direction_;
+  bool moving_left_ = false;
+  bool moving_right_ = false;
   ci::vec3 position_;
   const ci::vec3 kScale_ = ci::vec3(0.5, 0.4, 0.4);
   const float kPlayerSpeed_ = 0.05;

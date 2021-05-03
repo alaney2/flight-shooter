@@ -24,23 +24,26 @@ void Player::SetPosition(const ci::vec3 &position) {
   position_ = position;
 }
 
-void Player::ToggleMovement(bool is_moving) {
-  moving_ = is_moving;
-}
-
-void Player::SetMovementDirection(char direction) {
-  movement_direction_ = direction;
-}
-
 void Player::UpdatePosition() {
-  if (moving_) {
-    Strafe(movement_direction_);
+  if (moving_left_) {
+    Strafe('a');
+  }
+  if (moving_right_) {
+    Strafe('d');
   }
   if (position_.x >= kBoundary_) {
     position_.x = static_cast<float>(kBoundary_);
   } else if (position_.x <= -kBoundary_) {
     position_.x = static_cast<float>(-kBoundary_);
   }
+}
+
+void Player::SetMovingLeft(bool left) {
+  moving_left_ = left;
+}
+
+void Player::SetMovingRight(bool right) {
+  moving_right_ = right;
 }
 
 }

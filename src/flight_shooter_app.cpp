@@ -23,7 +23,7 @@ void FlightShooter::update() {
       ci::vec3 enemy_pos(x_pos, 2, 0);
       engine_.SpawnEnemy(enemy_pos);
     }
-    if (score_ % 200 == 0) {
+    if (score_ % 300 == 0) {
       engine_.IncreaseSpeedCounter();
     }
     engine_.AdvanceOneFrame();
@@ -33,10 +33,12 @@ void FlightShooter::update() {
 
 void FlightShooter::keyDown(cinder::app::KeyEvent event) {
   // Move player
-  if (event.getCode() == cinder::app::KeyEvent::KEY_a
-      || event.getCode() == cinder::app::KeyEvent::KEY_d) {
-    engine_.GetPlayerAddress().ToggleMovement(true);
-    engine_.GetPlayerAddress().SetMovementDirection(event.getChar());
+  if (event.getCode() == cinder::app::KeyEvent::KEY_a) {
+    engine_.GetPlayerAddress().SetMovingLeft(true);
+  }
+  
+  if (event.getCode() == cinder::app::KeyEvent::KEY_d) {
+    engine_.GetPlayerAddress().SetMovingRight(true);
   }
   
   // Shoot projectile
@@ -59,9 +61,12 @@ void FlightShooter::keyDown(cinder::app::KeyEvent event) {
 }
 
 void FlightShooter::keyUp(cinder::app::KeyEvent event) {
-  if (event.getCode() == cinder::app::KeyEvent::KEY_a 
-    || event.getCode() == cinder::app::KeyEvent::KEY_d) {
-    engine_.GetPlayerAddress().ToggleMovement(false);
+  if (event.getCode() == cinder::app::KeyEvent::KEY_a) {
+    engine_.GetPlayerAddress().SetMovingLeft(false);
+  }
+  
+  if (event.getCode() == cinder::app::KeyEvent::KEY_d) {
+    engine_.GetPlayerAddress().SetMovingRight(false);
   }
 }
 
