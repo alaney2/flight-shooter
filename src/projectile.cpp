@@ -2,8 +2,7 @@
 
 namespace flightshooter {
 
-Projectile::Projectile(const ci::vec3 &position) : position_(position) {
-}
+Projectile::Projectile(const ci::vec3 &position) : position_(position) {}
 
 void Projectile::MoveProjectileUp() {
   position_.y += static_cast<float>(projectile_speed_);
