@@ -59,7 +59,8 @@ list(APPEND SOURCE_FILES
 
 list(APPEND TEST_FILES 
         tests/game_engine_test.cpp
-        tests/player_test.cpp)
+        tests/test_player.cpp
+        tests/test_enemy.cpp)
 
 ci_make_app(
         APP_NAME        run-game
