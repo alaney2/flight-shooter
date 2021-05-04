@@ -46,7 +46,7 @@ const void GameEngine::DisplayStartMenu() const {
 
 const void GameEngine::DrawShapes() const {
   // Draw player
-  ci::gl::clear(ci::Color(0.5f, 0.5f, 0.5f));
+  ci::gl::clear(ci::Color(0.38f, 0.38f, 0.38f));  // gray background
   ci::gl::enableDepthRead();
   ci::gl::enableDepthWrite();
 
@@ -90,7 +90,7 @@ void GameEngine::UpdateProjectiles() {
   for (auto projectile = projectiles_.begin(); projectile != projectiles_.end();
        ++projectile) {
     projectile->MoveProjectileUp();
-    
+
     if (projectile->GetPosition().y > kProjectileEraseThreshold) {
       projectiles_.erase(projectile);
       --projectile;
@@ -116,10 +116,10 @@ void GameEngine::UpdateProjectiles() {
 }
 
 void GameEngine::UpdateEnemies() {
-  for (auto & enemy : enemies_) {
+  for (auto& enemy : enemies_) {
     enemy.MoveEnemyDown(enemy.GetSpeed() +
-                         speed_counter_ * kSpeedIncreaseConstant);
-    
+                        speed_counter_ * kSpeedIncreaseConstant);
+
     if (enemy.GetPosition().y < kEnemyEraseThreshold) {
       game_over_ = true;
       break;
