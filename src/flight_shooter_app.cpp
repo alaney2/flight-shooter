@@ -17,6 +17,7 @@ void FlightShooter::draw() {
 
 void FlightShooter::update() {
   if (!engine_.IsGameOver() && !engine_.OnStartMenu()) {
+    // Spawn enemies
     if (score_ % kEnemyGeneratingFactor == 0 &&
         score_ > kEnemyGeneratingScore) {
       double f = static_cast<double>(rand()) / RAND_MAX;
@@ -24,12 +25,15 @@ void FlightShooter::update() {
       ci::vec3 enemy_pos(x_pos, 2, 0);
       engine_.SpawnEnemy(enemy_pos);
     }
+    
+    // Increase enemy and player speeds
     if (score_ % kAccelerationDistance == 0) {
       engine_.IncreaseSpeedCounter();
       engine_.GetPlayerAddress().SetSpeed(static_cast<float>(
           engine_.GetPlayerAddress().GetSpeed() +
           engine_.GetSpeedCounter() * engine_.GetIncreaseSpeedConstant()));
     }
+    
     engine_.AdvanceOneFrame();
     ++score_;
   }
