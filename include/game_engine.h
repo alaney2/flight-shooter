@@ -39,6 +39,11 @@ class GameEngine {
   const void DisplayStartMenu() const;
 
   /**
+   * Method that displays the instructions page.
+   */
+  const void DisplayInstructionsPage() const;
+  
+  /**
    * Method that draws the shapes in game.
    */
   const void DrawShapes() const;
@@ -75,12 +80,12 @@ class GameEngine {
   /**
    * Method that returns the number of projectiles on screen.
    *
-   * @return number of projecties on screen
+   * @return number of projectiles on screen
    */
   const size_t ProjectilesOnScreen() const;
 
   /**
-   *
+   * Resets everything in the game engine.
    */
   void ResetGame();
 
@@ -103,10 +108,12 @@ class GameEngine {
   const double GetIncreaseSpeedConstant() const;
   const std::vector<Projectile> GetProjectiles() const;
   const std::vector<Enemy> GetEnemies() const;
+  const bool GetInstructionsPage() const;
   
   // Setter methods
   void SetGameOver(bool game_over);
   void SetStartMenu(bool start_menu);
+  void SetInstructionsPage(bool instructions);
 
  private:
   const double kSpeedIncreaseConstant = 0.005;   // constant speed increases by
@@ -117,9 +124,10 @@ class GameEngine {
       0.2;                           // distance from center of enemy to bottom
   const double kCenterToSide = 0.3;  // distance from center of enemy to side
 
-  double speed_counter_ = 0;   // counter for acceleration purpose
-  bool on_start_menu_ = true;  // boolean that determines whether on start menu
-  bool game_over_ = false;     // boolean that determines whether game is over
+  double speed_counter_ = 0;          // counter for acceleration purpose
+  bool on_start_menu_ = true;         // boolean that determines whether on start menu
+  bool on_instructions_page_ = false; // boolean that determines whether on instructions page
+  bool game_over_ = false;            // boolean that determines whether game is over
 
   Player player_;                        // instance of player
   std::vector<Projectile> projectiles_;  // vector of projectiles

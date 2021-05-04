@@ -57,8 +57,14 @@ void FlightShooter::keyDown(cinder::app::KeyEvent event) {
   }
 
   // Start game
-  if (event.getCode() == cinder::app::KeyEvent::KEY_SPACE) {
+  if (event.getCode() == cinder::app::KeyEvent::KEY_SPACE && engine_.OnStartMenu()) {
     engine_.SetStartMenu(false);
+  }
+  
+  // View instructions
+  if (event.getCode() == cinder::app::KeyEvent::KEY_e) {
+    engine_.SetInstructionsPage(!engine_.GetInstructionsPage());
+    engine_.SetStartMenu(!engine_.OnStartMenu());
   }
 
   // Restart game
@@ -87,18 +93,21 @@ const void FlightShooter::DisplayGameOverMenu() const {
   ci::gl::setMatrices(cam);
 
   ci::gl::drawStringCentered(
-      ("ɹǝʌoǝɯɐb"), glm::vec2(kWindowLength / 2, 2 * kWindowLength / 5),
+      ("ɹǝʌoǝɯɐb"), glm::vec2(kWindowLength / 2, 2 * kWindowLength / 3),
       "white", ci::Font("Times", 32));
   ci::gl::drawStringCentered(std::to_string(score_) + " :ǝɹoɔs",
-                             glm::vec2(kWindowLength / 2, kWindowLength / 2),
+                             glm::vec2(kWindowLength / 2, 3 * kWindowLength / 5),
                              "white", ci::Font("Times", 32));
   ci::gl::drawStringCentered(
       std::to_string(high_score_) + " :ǝɹoɔs ɥbıɥ",
-      glm::vec2(kWindowLength / 2, 3 * kWindowLength / 5), "white",
+      glm::vec2(kWindowLength / 2, 11 * kWindowLength / 20), "white",
+      ci::Font("Times", 32));
+  ci::gl::drawStringCentered(" (¡uʍop ǝpısdn ǝɹoɔs ǝɥʇ pɐǝɹ)",
+      glm::vec2(kWindowLength / 2, kWindowLength / 2), "white",
       ci::Font("Times", 32));
   ci::gl::drawStringCentered(
       ("uıɐbɐ ʎɐןd oʇ ,ɹ, ssǝɹd"),
-      glm::vec2(kWindowLength / 2, 2 * kWindowLength / 3), "white",
+      glm::vec2(kWindowLength / 2, 2 * kWindowLength / 5), "white",
       ci::Font("Times", 32));
 }
 

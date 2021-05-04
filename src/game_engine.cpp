@@ -11,6 +11,8 @@ GameEngine::GameEngine() {
 const void GameEngine::Display() const {
   if (on_start_menu_) {
     DisplayStartMenu();
+  } else if (on_instructions_page_) {
+    DisplayInstructionsPage();
   } else {
     DrawShapes();
   }
@@ -36,12 +38,43 @@ const void GameEngine::DisplayStartMenu() const {
   ci::gl::draw(
       ci::gl::Texture::create(loadImage(ci::app::loadAsset("space.jpg"))));
 
+  ci::gl::drawStringCentered(("ɹǝʇooɥs ʇɥbıןɟ"),
+                             glm::vec2(kWindowLength / 2, 3 * kWindowLength / 5),
+                             "white", ci::Font("Times", 36));
   ci::gl::drawStringCentered(
-      ("ɹǝʇooɥs ʇɥbıןɟ"), glm::vec2(kWindowLength / 2, 2 * kWindowLength / 5),
-      "white", ci::Font("Times", 32));
-  ci::gl::drawStringCentered(("uıbǝq oʇ ɹɐqǝɔɐds ssǝɹd"),
+      ("suoıʇɔnɹʇsuı ʍǝıʌ oʇ ǝ ssǝɹd"),
+      glm::vec2(kWindowLength / 2,  kWindowLength / 2), "white",
+      ci::Font("Times", 20));
+  ci::gl::drawStringCentered(
+      ("uıbǝq oʇ ɹɐqǝɔɐds"),
+      glm::vec2(kWindowLength / 2, 2 * kWindowLength / 5), "white",
+      ci::Font("Times", 20));
+}
+
+const void GameEngine::DisplayInstructionsPage() const {
+  ci::gl::clear();
+
+  ci::CameraPersp cam;
+  cam.lookAt(vec3(0, 0, -360), vec3(360, 360, 0));
+  ci::gl::setMatrices(cam);
+
+  ci::gl::draw(
+      ci::gl::Texture::create(loadImage(ci::app::loadAsset("space.jpg"))));
+
+  ci::gl::drawStringCentered(
+      ("suoıʇɔnɹʇsuı"), glm::vec2(kWindowLength / 2, 3 * kWindowLength / 5),
+      "white", ci::Font("Times", 36));
+  ci::gl::drawStringCentered(
+      ("ǝʌoɯ oʇ p puɐ ɐ"),
+      glm::vec2(kWindowLength / 2, 11 * kWindowLength / 20), "white",
+      ci::Font("Times", 20));
+  ci::gl::drawStringCentered(("ʇooɥs oʇ ʍ"),
                              glm::vec2(kWindowLength / 2, kWindowLength / 2),
                              "white", ci::Font("Times", 20));
+  ci::gl::drawStringCentered(
+      ("¡ǝɹoɔs ʇsǝɥbıɥ ǝɥʇ ɹoɟ ɯıɐ"),
+      glm::vec2(kWindowLength / 2, 9 * kWindowLength / 20), "white",
+      ci::Font("Times", 20));
 }
 
 const void GameEngine::DrawShapes() const {
@@ -127,6 +160,20 @@ void GameEngine::UpdateEnemies() {
   }
 }
 
+void GameEngine::IncreaseSpeedCounter() {
+  speed_counter_ += 1;
+}
+
+void GameEngine::ResetGame() {
+  on_start_menu_ = false;
+  on_instructions_page_ = false;
+  speed_counter_ = 0;
+  enemies_.clear();
+  projectiles_.clear();
+  player_.SetSpeed(static_cast<float>(kResetSpeed));
+  player_.SetPosition(ci::vec3(0));
+}
+
 const size_t GameEngine::ProjectilesOnScreen() const {
   return projectiles_.size();
 }
@@ -135,28 +182,8 @@ const bool GameEngine::IsGameOver() const {
   return game_over_;
 }
 
-void GameEngine::SetGameOver(bool game_over) {
-  game_over_ = game_over;
-}
-
 const bool GameEngine::OnStartMenu() const {
   return on_start_menu_;
-}
-
-void GameEngine::SetStartMenu(bool start_menu) {
-  on_start_menu_ = start_menu;
-}
-
-void GameEngine::IncreaseSpeedCounter() {
-  speed_counter_ += 1;
-}
-
-void GameEngine::ResetGame() {
-  speed_counter_ = 0;
-  enemies_.clear();
-  projectiles_.clear();
-  player_.SetSpeed(static_cast<float>(kResetSpeed));
-  player_.SetPosition(ci::vec3(0));
 }
 
 const double GameEngine::GetSpeedCounter() const {
@@ -173,6 +200,22 @@ const std::vector<Projectile> GameEngine::GetProjectiles() const {
 
 const std::vector<Enemy> GameEngine::GetEnemies() const {
   return enemies_;
+}
+
+const bool GameEngine::GetInstructionsPage() const {
+  return on_instructions_page_;
+}
+
+void GameEngine::SetGameOver(bool game_over) {
+  game_over_ = game_over;
+}
+
+void GameEngine::SetStartMenu(bool start_menu) {
+  on_start_menu_ = start_menu;
+}
+
+void GameEngine::SetInstructionsPage(bool instructions) {
+  on_instructions_page_ = instructions;
 }
 
 }  // namespace flightshooter
