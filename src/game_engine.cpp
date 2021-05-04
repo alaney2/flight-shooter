@@ -167,4 +167,12 @@ const double GameEngine::GetIncreaseSpeedConstant() const {
   return kSpeedIncreaseConstant;
 }
 
+const std::vector<Projectile> GameEngine::GetProjectiles() const {
+  return projectiles_;
+}
+
+const std::vector<Enemy> GameEngine::GetEnemies() const {
+  return enemies_;
+}
+
 }  // namespace flightshooter

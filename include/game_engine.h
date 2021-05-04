@@ -101,7 +101,9 @@ class GameEngine {
   // Getter methods
   const double GetSpeedCounter() const;
   const double GetIncreaseSpeedConstant() const;
-
+  const std::vector<Projectile> GetProjectiles() const;
+  const std::vector<Enemy> GetEnemies() const;
+  
   // Setter methods
   void SetGameOver(bool game_over);
   void SetStartMenu(bool start_menu);
