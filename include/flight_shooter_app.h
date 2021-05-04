@@ -45,7 +45,8 @@ class FlightShooter : public ci::app::App {
   const void DisplayGameOverMenu() const;
 
  private:
-  const size_t kMaxProjectiles = 5;  // maximum number of projectiles
+  const size_t kMaxProjectiles =
+      5;  // maximum number of projectiles player can shoot
 
   const size_t kAccelerationDistance =
       500;  // distance that triggers acceleration

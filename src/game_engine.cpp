@@ -58,7 +58,7 @@ const void GameEngine::DrawShapes() const {
   auto shader = ci::gl::getStockShader(lambert);
   shader->bind();
 
-  ci::gl::translate(0, -0.8, 0);
+  ci::gl::translate(0, -0.9, 0);
   ci::gl::drawCube(player_.GetPosition(), player_.GetScale());
 
   // Draw projectiles
@@ -90,11 +90,11 @@ void GameEngine::UpdateProjectiles() {
   for (auto projectile = projectiles_.begin(); projectile != projectiles_.end();
        ++projectile) {
     projectile->MoveProjectileUp();
-
-    float erase_threshold = kProjectileEraseThreshold;
-    if (projectile->GetPosition().y > erase_threshold) {
+    
+    if (projectile->GetPosition().y > kProjectileEraseThreshold) {
       projectiles_.erase(projectile);
       --projectile;
+      break;
     }
 
     // Check collisions
@@ -116,15 +116,12 @@ void GameEngine::UpdateProjectiles() {
 }
 
 void GameEngine::UpdateEnemies() {
-  for (auto enemy = enemies_.begin(); enemy != enemies_.end(); ++enemy) {
-    enemy->MoveEnemyDown(enemy->GetSpeed() +
+  for (auto & enemy : enemies_) {
+    enemy.MoveEnemyDown(enemy.GetSpeed() +
                          speed_counter_ * kSpeedIncreaseConstant);
-
-    float erase_threshold = kEnemyEraseThreshold;
-    if (enemy->GetPosition().y < erase_threshold) {
+    
+    if (enemy.GetPosition().y < kEnemyEraseThreshold) {
       game_over_ = true;
-      enemies_.clear();
-      projectiles_.clear();
       break;
     }
   }
@@ -156,7 +153,10 @@ void GameEngine::IncreaseSpeedCounter() {
 
 void GameEngine::ResetGame() {
   speed_counter_ = 0;
+  enemies_.clear();
+  projectiles_.clear();
   player_.SetSpeed(static_cast<float>(kResetSpeed));
+  player_.SetPosition(ci::vec3(0));
 }
 
 const double GameEngine::GetSpeedCounter() const {
