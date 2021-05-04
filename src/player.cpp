@@ -3,16 +3,16 @@
 namespace flightshooter {
 
 const ci::vec3 Player::GetScale() const {
-  return kScale_;
+  return kScale;
 }
 
 void Player::Strafe(char direction) {
   if (direction == 'a') {
-    position_.x -= kSpeed_;
+    position_.x -= player_speed_;
   }
-  
+
   if (direction == 'd') {
-    position_.x += kSpeed_;
+    position_.x += player_speed_;
   }
 }
 
@@ -24,27 +24,34 @@ void Player::SetPosition(const ci::vec3 &position) {
   position_ = position;
 }
 
-void Player::ToggleMovement(bool is_moving) {
-  moving_ = is_moving;
-}
-
-bool Player::isPlayerMoving() {
-  return moving_;
-}
-
-void Player::SetMovementDirection(char direction) {
-  movement_direction_ = direction;
-}
-
 void Player::UpdatePosition() {
-  if (moving_) {
-    Strafe(movement_direction_);
+  if (moving_left_) {
+    Strafe('a');
   }
-  if (position_.x >= kBoundary_) {
-    position_.x = kBoundary_;
-  } else if (position_.x <= -kBoundary_) {
-    position_.x = -kBoundary_;
+  if (moving_right_) {
+    Strafe('d');
+  }
+  if (position_.x >= kBoundary) {
+    position_.x = static_cast<float>(kBoundary);
+  } else if (position_.x <= -kBoundary) {
+    position_.x = static_cast<float>(-kBoundary);
   }
 }
 
+void Player::SetMovingLeft(bool left) {
+  moving_left_ = left;
 }
+
+void Player::SetMovingRight(bool right) {
+  moving_right_ = right;
+}
+
+const float Player::GetSpeed() const {
+  return player_speed_;
+}
+
+void Player::SetSpeed(float speed) {
+  player_speed_ = speed;
+}
+
+}  // namespace flightshooter
